@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Films Website</title>
+    <!-- Bootstrap CSS (CDN) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Set a diagonal red and black stripe */
+        body {
+            background-image:url(https://e0.pxfuel.com/wallpapers/249/957/desktop-wallpaper-danielsalisbury-on-horror-in-2020-horror-posters-horror-icons-horror-movie-icons.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Adjust the navbar to match the color scheme */
+        .navbar {
+            margin-bottom: 40px;
+            background-color: #000; /* Black background for navbar */
+            border-bottom: 3px solid #ff0000; /* Red border at the bottom of the navbar */
+        }
+
+        .navbar-brand {
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1.1rem;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        /* Heading Style */
+        h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #f7f7f7;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            margin-top: 50px;
+        }
+
+        /* Container styling for books */
+        .container {
+            margin-top: 40px;
+        }
+
+        /* Card Styles */
+        .card {
+            border: none;
+            border-radius: 15px;
+            background-color: rgba(0, 0, 0, 0.8); /* Dark background for cards */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 450px; /* Increased height for larger images */
+            object-fit: cover; /* Ensures the image fills the space */
+            border-radius: 15px 15px 0 0; /* Rounded corners for top */
+        }
+
+        .card-body {
+            padding: 20px;
+            color: white;
+            text-align: left;
+        }
+
+        .card-title {
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #e3e3e3;
+        }
+
+        .btn-primary {
+            margin-top: 10px;
+            background-color: #ff0000; /* Red color for the button */
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #d90000; /* Darker red for hover effect */
+        }
+
+        /* Adjusting grid layout for larger screens */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .col-md-4 {
+            width: 40%; /* Increased width for images */
+            margin-bottom: 30px;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 1024px) {
+            .col-md-4 {
+                width: 48%; /* Two items per row on tablets */
+            }
+        }
+
+        @media (max-width: 767px) {
+            .col-md-4 {
+                width: 100%; /* One item per row on mobile */
+            }
+
+            /* Adjust image height for small screens */
+            .card-img-top {
+                height: 300px;
+            }
+        }
+
+
+        /* Footer Styling */
+        footer {
+            background-color: #000; /* Black background for footer */
+<!--            color: #fff;-->
+            padding: 20px;
+            text-align: center;
+            border-top: 3px solid #ff0000; /* Red border at the top of the footer */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">Films world</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Page Heading -->
+<h1>Jahon kinolari</h1>
+
+<!-- Books Display -->
+<div class="container">
+    <div class="row">
+        <!-- Loop to display each book dynamically -->
+        {% for i in d %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ i.image }}" class="card-img-top" alt="{{ i.title }}"/>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i.title }}</h5>
+                        <p class="card-text"><strong>Author:</strong> {{ i.author }}</p>
+                        <p class="card-text"><strong>Category:</strong> {{ i.category }}</p>
+                        <a href="media/books/{{ i.book_name }}" class="btn btn-primary" download>Download 🎥</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 Films World.</p>
+</footer>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
